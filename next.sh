@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
+set -euo
 
 # import .env
 set -o allexport; source .env; set +o allexport
@@ -18,6 +18,7 @@ fi
 PREV_DAY=$(ls -d */ | grep -E "[0-9]{2}" | sed 's#/##' | tail -n1)
 
 if [[ -z $PREV_DAY ]]; then
+  echo "prev"
   NEXT_NUM=1
 else
   NEXT_NUM=$((PREV_DAY+1))
