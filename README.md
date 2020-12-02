@@ -18,4 +18,10 @@ cp .env.example .env
 ./next.sh
 ```
 
-This prepare a new folder, copies template and downloads your input.
+This prepares a new dir, copies templates and downloads your input.
+
+To run tests in a dir.
+
+```bash
+go test -run ''
+```
