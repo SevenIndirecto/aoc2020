@@ -16,20 +16,6 @@ type Seat struct {
 	Column int
 }
 
-type SeatList []Seat
-
-func (e SeatList) Len() int {
-	return len(e)
-}
-
-func (e SeatList) Less(i, j int) bool {
-	return e[i].SeatId() > e[j].SeatId()
-}
-
-func (e SeatList) Swap(i, j int) {
-	e[i], e[j] = e[j], e[i]
-}
-
 func ToSeat(pass string) Seat {
 	return Seat{
 		Row:    getCoordinate(pass[:7], 127, 'F', 'B'),
@@ -60,7 +46,7 @@ func main() {
 
 	txt := string(dat)
 	lines := strings.Split(txt, "\n")
-	var seats SeatList
+	var seats []Seat
 
 	for _, line := range lines {
 		if len(line) < 10 {
@@ -75,8 +61,10 @@ func main() {
 		return
 	}
 
-	sort.Sort(seats)
-	fmt.Println("Part one:", seats[0].SeatId(), len(seats))
+	sort.Slice(seats, func(i, j int) bool {
+		return seats[i].SeatId() > seats[j].SeatId()
+	})
+	fmt.Println("Part one:", seats[0].SeatId())
 
 	for i := range seats {
 		if seats[i].SeatId()-seats[i+1].SeatId() != 1 {
