@@ -4,11 +4,11 @@ import (
 	"testing"
 )
 
-type Fixtures struct {
+type Fixture struct {
 }
 
 func TestFuel(t *testing.T) {
-	fixtures := []Fixtures{}
+	fixtures := []Fixture{}
 
 	for _, fixture := range fixtures {
 		got := Fuel(fixture.Mass)

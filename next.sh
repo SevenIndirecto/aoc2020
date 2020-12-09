@@ -18,10 +18,10 @@ fi
 PREV_DAY=$(ls -d */ | grep -E "[0-9]{2}" | sed 's#/##' | tail -n1)
 
 if [[ -z $PREV_DAY ]]; then
-  echo "prev"
   NEXT_NUM=1
 else
-  NEXT_NUM=$((PREV_DAY+1))
+  # 10# to force base 10, since our format can be "08" and interpreted as octal
+  NEXT_NUM=$((10#${PREV_DAY}+1))
 fi
 
 NEXT=$(printf "%02d" "$NEXT_NUM")
